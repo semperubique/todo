@@ -1,1 +1,5 @@
-console.log("salam");
+import {displayHandler} from './main_layout';
+
+
+displayHandler.initializeLayout();
+
