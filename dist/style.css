@@ -111,8 +111,8 @@ main {
 }
 
 .projects {
-    display: grid;
-    grid-template-rows: 1fr minmax(200px, 8fr) 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 0.3rem;    
 }
 
@@ -121,6 +121,7 @@ main {
     flex-direction: column;
     gap: 0.1rem;
     overflow-y: scroll;
+    max-height: 550px; 
 }
 
 .add-project {
@@ -133,6 +134,12 @@ main {
 
 .content {
     
+}
+
+.content-container {
+    width: 900px;
+    margin: 0 auto;
+    border: 3px solid red;
 }
 
 main h2 {

@@ -1,4 +1,4 @@
-const displayHandler = (() => {
+const displayInitializer = (() => {
     const initializeHeader = (header) => {
         const logo = document.createElement('h1');
         logo.classList.add('logo');
@@ -36,9 +36,9 @@ const displayHandler = (() => {
         const inbox = document.createElement('button');
         const today = document.createElement('button');
         const upcoming = document.createElement('button');
-        inbox.classList.add('folder-button');
-        today.classList.add('folder-button');
-        upcoming.classList.add('folder-button');
+        inbox.classList.add('folder-button','inbox');
+        today.classList.add('folder-button','today');
+        upcoming.classList.add('folder-button','upcoming');
 
         const inboxIcon = document.createElement('span');
         const todayIcon = document.createElement('span');
@@ -74,8 +74,6 @@ const displayHandler = (() => {
         projectAddButton.classList.add('add-project');
 
         title.textContent = 'Projects';
-
-        projectList.textContent = "SSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DSSSDMK KSD SDK SDK DS";
 
         const projectAddButtonIcon = document.createElement('span');
         projectAddButtonIcon.classList.add('material-icons');
@@ -118,4 +116,89 @@ const displayHandler = (() => {
     return {initializeLayout};
 })();
 
-export {displayHandler};
+const Task = (title, description, dueDate, priority, project) => {
+    let done = false;
+    return {title, description, dueDate, priority, project, done};
+};
+
+const displayUpdater = (() => {
+    const updateContent = (choice, tasks) => {
+        const content = document.querySelector('.content');
+        content.innerHTML = '';
+        const container = document.createElement('div')
+        container.classList.add('content-container');
+
+        const choiceTitle = document.createElement('h2');
+        const taskList = document.createElement('ul')
+        taskList.classList.add('task-list');
+
+        if(choice.classList[1] === 'inbox'){
+            choiceTitle.textContent = 'Inbox';
+            tasks.forEach(task => {
+                console.log(task);
+                const taskElement = document.createElement('li');
+                
+                const taskDone = document.createElement('button');
+                const taskPriority = document.createElement('span');
+                const taskTitle = document.createElement('span');
+                const taskProject = document.createElement('p');
+                const taskDescription = document.createElement('p');
+                const taskDescriptionVisiblity = document.createElement('button');
+                const taskDueDate = document.createElement('span');
+                const taskDelete = document.createElement('button');
+
+                taskElement.appendChild(taskDone);
+                taskElement.appendChild(taskPriority);
+                taskElement.appendChild(taskTitle);
+                taskElement.appendChild(taskProject);
+                taskElement.appendChild(taskDueDate);
+                taskElement.appendChild(taskDelete);
+
+                taskList.appendChild(taskElement);
+            });
+        }
+        else if(choice.classList[1] === 'today'){
+            choiceTitle.textContent = 'Today'
+        }
+        else if(choice.classList[1] === 'upcoming') {
+            choiceTitle.textContent = 'Upcoming';
+        }
+        else {
+            choiceTitle.textContent = 'Project name';
+        }
+
+        container.appendChild(choiceTitle);
+        container.appendChild(taskList);
+        content.appendChild(container);
+    };
+
+    const updateProjectList = () => {
+
+    };
+
+    return {updateContent, updateProjectList};
+})();
+
+const logicHandler = (() => {
+    let tasks = [];
+
+    const addTask = (task) => {
+        tasks.push(task);
+    }
+
+    const task = Task('Clean the house','There are some spiders that are dirty','2022', 1);
+    addTask(task);    
+
+    const switchFolder = () => {
+        const folderButtons = document.querySelectorAll('.folder-button');
+        folderButtons.forEach(folder => folder.addEventListener('click', () => {
+            displayUpdater.updateContent(folder, tasks);
+        }));
+    };
+
+    return {switchFolder, addTask};
+})();
+
+
+
+export {displayInitializer, logicHandler};

@@ -1,5 +1,4 @@
-import {displayHandler} from './main_layout';
+import {displayInitializer, logicHandler} from './main_layout';
 
-
-displayHandler.initializeLayout();
-
+displayInitializer.initializeLayout();
+logicHandler.switchFolder();
