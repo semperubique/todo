@@ -134,12 +134,16 @@ main {
 
 .content {
     padding: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .task-list {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 0.3rem;
+    flex: 1 1 auto;
 }
 
 .task-list li {
@@ -150,6 +154,7 @@ main {
 
 .task-title {
     flex: 1 1 auto;
+    max-height: 600px; 
 }
 
 .task-list li button {
@@ -159,9 +164,13 @@ main {
 }
 
 .content-container {
-    width: 900px;
-    margin: 0 auto;
+    max-width: 800px;
+    /* margin: 0 auto; */
     padding: 1.5rem;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 main h2 {
@@ -173,6 +182,14 @@ main h2 {
     background-color: inherit;
     font: inherit;
     margin-bottom: 0.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+main form {
+    
 }
 
 footer {
