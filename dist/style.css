@@ -1,233 +1,312 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 /* ----------------------------------------------------------------- */
 
 :root {
-    --white: #e7e5e4;
-    --black: #1c1917;
-    --gray: #78716c;
-    --gray-dark: #d6d3d1;
+  --white: #e7e5e4;
+  --black: #1c1917;
+  --gray: #78716c;
+  --gray-dark: #d6d3d1;
 }
 
 body {
-    /* overflow-y: hidden; */
-    height: 100vh;
+  /* overflow-y: hidden; */
+  height: 100vh;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
-    background-color: var(--black);
-    color: var(--white);
+  background-color: var(--black);
+  color: var(--white);
 
-    padding: 2rem 1.5rem;
+  padding: 2rem 1.5rem;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 header .logo {
-    font-size: 3.5rem;
-    margin-left: 4rem;
+  font-size: 3.5rem;
+  margin-left: 4rem;
 }
 
 main {
-    background-color: var(--white);
-    color: var(--black);
+  background-color: var(--white);
+  color: var(--black);
 
-    display: grid;
-    grid-template-columns: minmax(300px,1fr) minmax(500px,5fr);
-    flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(500px, 5fr);
+  flex: 1 1 auto;
 }
 
 .sidebar {
-    background-color: var(--gray-dark);
+  background-color: var(--gray-dark);
 
-    display: flex;
-    flex-direction: column;
-    padding: 1.2rem;
-    gap: 1.7rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
+  gap: 1.7rem;
 }
 
 .folders {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .folder-button {
-    border: none;
-    background-color: inherit;
-    text-align: start;
-    display: flex;
-    align-items: center;
+  border: none;
+  background-color: inherit;
+  text-align: start;
+  display: flex;
+  align-items: center;
 }
 
 .projects {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;    
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .project-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-    overflow-y: scroll;
-    max-height: 550px; 
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  overflow-y: scroll;
+  max-height: 550px;
 }
 
 .project-name-and-detele {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .project-button {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .add-project {
-    border: none;
-    background-color: inherit;
-    text-align: start;
-    display: flex;
-    align-items: center;
+  border: none;
+  background-color: inherit;
+  text-align: start;
+  display: flex;
+  align-items: center;
 }
 
 .content {
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 .task-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.3rem;
-    flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  flex: 1 1 auto;
 }
 
 .task-list li {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .task-title {
-    flex: 1 1 auto;
-    max-height: 600px; 
+  flex: 1 1 auto;
+  max-height: 600px;
 }
 
 .task-list li button {
-    border: none;
-    background-color: inherit;
-    font: inherit;
+  border: none;
+  background-color: inherit;
+  font: inherit;
 }
 
 .content-container {
-    max-width: 800px;
-    /* margin: 0 auto; */
-    padding: 1.5rem;
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  max-width: 800px;
+  /* margin: 0 auto; */
+  padding: 1.5rem;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 main h2 {
-    font-size: 2.3rem;
-    margin-bottom: 0.5rem;
+  font-size: 2.3rem;
+  margin-bottom: 0.5rem;
 }
 
 .add-task-button {
-    background-color: inherit;
-    font: inherit;
-    margin-bottom: 0.5rem;
+  background-color: inherit;
+  font: inherit;
+  margin-bottom: 0.5rem;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 main .content form {
-    display: grid;
-    grid-template-columns: 1fr;
-    /* grid-template-rows: repeat(3, 1fr); */
+  display: grid;
+  grid-template-columns: 1fr;
+  /* grid-template-rows: repeat(3, 1fr); */
 }
 
 .add-or-cancel {
-    grid-row: 3 / 4;
-    grid-column: 1 / -1;
-    display: flex;
+  grid-row: 3 / 4;
+  grid-column: 1 / -1;
+  display: flex;
 }
 
 .add-or-cancel > * {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .text-area-description {
-    grid-column: 1 / -1;
-    grid-row: 2 / 3;
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
 }
 
 .task-details-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
-
 
 footer {
-    background-color: var(--black);
-    color: var(--white);
+  background-color: var(--black);
+  color: var(--white);
 
-    padding: 0.3rem;
+  padding: 0.3rem;
 }
-

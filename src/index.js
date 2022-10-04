@@ -1,6 +1,7 @@
-import {displayInitializer, logicHandler} from './main_layout';
+import { initializeUI } from "./initializeUI";
+import { logicHandler } from "./UX";
 
-displayInitializer.initializeLayout();
-logicHandler.switchFolder();
+initializeUI.initializeBody();
+logicHandler.enableFolderSwitching();
 logicHandler.updateProjectList();
-logicHandler.switchProject();
+logicHandler.enableProjectSwitching();
