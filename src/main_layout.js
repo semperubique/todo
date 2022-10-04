@@ -135,6 +135,7 @@ const displayUpdater = (() => {
         taskDeleteIcon.classList.add('material-icons');
         taskDeleteIcon.textContent = 'close';
         taskDelete.appendChild(taskDeleteIcon);
+        taskDelete.classList.add('task-delete-button');
 
         taskElement.appendChild(taskDone);
         taskElement.appendChild(taskPriority);
@@ -180,6 +181,7 @@ const displayUpdater = (() => {
         container.appendChild(addTaskButton);
         container.appendChild(taskList);
         content.appendChild(container);
+        logicHandler.enabelDeleteTaskButton();
     };
 
     const updateProjectList = (projects) => {
@@ -187,10 +189,18 @@ const displayUpdater = (() => {
         projectList.innerHTML = '';
         projects.forEach(project => {
             const projectElement = document.createElement('li');
-            projectElement.classList.add('project-button');
-            projectElement.textContent = project.title;
+            projectElement.classList.add('project-name-and-detele');
+            const projectName = document.createElement('span');
+            projectName.classList.add('project-button');
+            projectName.textContent = project.title;
+            const projectDeleteButton = document.createElement('button');
+            projectDeleteButton.textContent = 'x';
+            projectDeleteButton.classList.add('project-delete-button');
+            projectElement.appendChild(projectName);
+            projectElement.appendChild(projectDeleteButton);
             projectList.appendChild(projectElement);
         });
+        logicHandler.enabelDeleteProjectButton();
     };
 
     return {updateContent, updateProjectList, updateTaskList};
@@ -238,7 +248,6 @@ const logicHandler = (() => {
     };
 
     const openProjectForm = (addProjectButton) => {
-        // problem
         addProjectButton.classList.add('hidden');
         const form = document.createElement('form');
         
@@ -384,7 +393,30 @@ const logicHandler = (() => {
         addProjectButton.addEventListener('click', () => openProjectForm(addProjectButton));
     };
 
-    return {switchFolder, switchProject, updateProjectList, enableAddProjectButton};
+    const enabelDeleteProjectButton = () => {
+        const projectDeleteButtons = document.querySelectorAll('.project-delete-button');
+        projectDeleteButtons.forEach(projectDeleteButton => projectDeleteButton.addEventListener('click', () =>{
+            projects = projects.filter(project => project.title !== projectDeleteButton.closest('li').children[0].textContent);
+            projectDeleteButton.closest('li').remove();
+        }));
+    };
+
+    const enabelDeleteTaskButton = () => {
+        const taskDeleteButtons = document.querySelectorAll('.task-delete-button');
+        taskDeleteButtons.forEach(taskDeleteButton => taskDeleteButton.addEventListener('click', () => {
+            console.log(taskDeleteButton.closest('li').children[2].textContent);
+            tasks = tasks.filter(task => task.title !== taskDeleteButton.closest('li').children[2].textContent);
+            taskDeleteButton.closest('li').remove();
+        }));
+    }
+
+    return {
+        switchFolder,
+        switchProject, 
+        updateProjectList, 
+        enableAddProjectButton, 
+        enabelDeleteProjectButton,
+        enabelDeleteTaskButton};
 })();
 
 

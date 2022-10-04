@@ -124,6 +124,15 @@ main {
     max-height: 550px; 
 }
 
+.project-name-and-detele {
+    display: flex;
+    align-items: center;
+}
+
+.project-button {
+    flex: 1 1 auto;
+}
+
 .add-project {
     border: none;
     background-color: inherit;
