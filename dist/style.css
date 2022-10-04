@@ -188,9 +188,32 @@ main h2 {
     display: none;
 }
 
-main form {
-    
+main .content form {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: repeat(3, 1fr); */
 }
+
+.add-or-cancel {
+    grid-row: 3 / 4;
+    grid-column: 1 / -1;
+    display: flex;
+}
+
+.add-or-cancel > * {
+    flex: 1 1 auto;
+}
+
+.text-area-description {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+}
+
+.task-details-container {
+    display: flex;
+    align-items: center;
+}
+
 
 footer {
     background-color: var(--black);
