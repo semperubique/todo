@@ -13,6 +13,51 @@ const updateUI = (() => {
       );
     }
 
+    const sortAlphabetically = (a, b) => {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+
+    const sortCompleted = (a, b) => {
+      if (a.done < b.done) {
+        return -1;
+      } else if (a.done > b.done) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+
+    const sortPriority = (a, b) => {
+      if (a.priority > b.priority) {
+        return -1;
+      } else if (a.priority < b.priority) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+
+    const sortDueDate = (a, b) => {
+      if (a.dueDate < b.dueDate) {
+        return -1;
+      } else if (a.dueDate > b.dueDate) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+
+    filteredTasks.sort(sortAlphabetically);
+    filteredTasks.sort(sortDueDate);
+    filteredTasks.sort(sortPriority);
+    filteredTasks.sort(sortCompleted);
+
     const taskList = document.querySelector(".task-list");
     taskList.innerHTML = "";
     filteredTasks.forEach((task) => {
@@ -57,6 +102,9 @@ const updateUI = (() => {
     });
     UX.enableDeleteTaskButton();
     UX.enableCompleteTaskButton();
+
+    // saving process
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
   const updateProjectList = (projects) => {
@@ -77,6 +125,9 @@ const updateUI = (() => {
     });
     UX.enableDeleteProjectButton();
     UX.enableProjectSwitching();
+
+    // saving process
+    localStorage.setItem("projects", JSON.stringify(projects));
   };
 
   const updateChoiceTitle = (choice) => {

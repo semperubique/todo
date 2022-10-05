@@ -1,5 +1,3 @@
-import { UX } from "./UX";
-
 const initializeUI = (() => {
   const initializeHeader = () => {
     const header = document.createElement("header");

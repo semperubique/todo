@@ -1,6 +1,6 @@
-import { Task, Project } from "./objects";
+import { Task, Project, tasks, projects } from "./objects";
 import { updateUI } from "./updateUI";
-import { tasks, projects } from "./objects";
+// import { tasks, projects } from "./objects";
 
 const UX = (() => {
   const enableFolderSwitching = () => {

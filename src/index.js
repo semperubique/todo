@@ -1,9 +1,11 @@
 import { initializeUI } from "./initializeUI";
 import { UX } from "./UX";
-import { demo } from "./objects";
+import { updateUI } from "./updateUI";
+import { tasks, projects } from "./objects";
 
 initializeUI.initializeBody();
-demo();
+updateUI.updateTaskList(tasks);
+updateUI.updateProjectList(projects);
 UX.enableAddProjectButton();
 UX.enableAddTaskButton();
 UX.enableFolderSwitching();
