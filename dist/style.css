@@ -164,8 +164,8 @@ main {
   background-color: var(--white);
   color: var(--black);
 
-  display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(500px, 5fr);
+  display: flex;
+  /* grid-template-columns: minmax(300px, 1fr) minmax(500px, 5fr); */
   flex: 1 1 auto;
 }
 
@@ -226,6 +226,7 @@ main {
   padding: 2rem;
   display: flex;
   justify-content: center;
+  flex: 1 1 auto;
 }
 
 .task-list {
@@ -234,6 +235,8 @@ main {
   justify-content: flex-start;
   gap: 0.3rem;
   flex: 1 1 auto;
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 .task-list li {
