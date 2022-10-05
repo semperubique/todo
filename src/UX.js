@@ -1,53 +1,14 @@
 import { Task, Project } from "./objects";
 import { updateUI } from "./updateUI";
+import { tasks, projects } from "./objects";
 
-const logicHandler = (() => {
-  let tasks = [];
-  let projects = [];
-
-  const addProject = (project) => {
-    projects.push(project);
-  };
-
-  const addTask = (task) => {
-    tasks.push(task);
-  };
-
-  const task1 = Task(
-    "Clean the house",
-    "There are some spiders that are dirty",
-    "2022",
-    1
-  );
-  const task2 = Task(
-    "Remove the mouxxxse",
-    "There are some spiders that are dixrty",
-    "2022",
-    1,
-    "work"
-  );
-  addTask(task1);
-  addTask(task2);
-  const project1 = Project("work");
-  const project2 = Project("gym");
-  addProject(project1);
-  addProject(project2);
-
-  const updateProjectList = () => {
-    const projectList = document.querySelector(".project-list");
-    projectList.innerHTML = "";
-    projects.forEach((project) => {
-      updateUI.addNewProjectToProjectList(projectList, project);
-    });
-    enabelDeleteProjectButton();
-  };
-
+const UX = (() => {
   const enableFolderSwitching = () => {
     const folderButtons = document.querySelectorAll(".folder-button");
     folderButtons.forEach((folder) =>
       folder.addEventListener("click", () => {
-        updateUI.updateContent(folder, tasks);
-        enableAddTaskButton();
+        updateUI.updateChoiceTitle(folder);
+        updateUI.updateTaskList(tasks);
       })
     );
   };
@@ -56,8 +17,8 @@ const logicHandler = (() => {
     const projectButtons = document.querySelectorAll(".project-button");
     projectButtons.forEach((project) =>
       project.addEventListener("click", () => {
-        updateUI.updateContent(project, tasks);
-        enableAddTaskButton();
+        updateUI.updateChoiceTitle(project);
+        updateUI.updateTaskList(tasks);
       })
     );
   };
@@ -91,7 +52,7 @@ const logicHandler = (() => {
       } else {
         const newProject = Project(projectTitle.value);
         projects.push(newProject);
-        updateProjectList();
+        updateUI.updateProjectList(projects); // here
         enableProjectSwitching();
         form.remove();
         addProjectButton.classList.remove("hidden");
@@ -179,7 +140,7 @@ const logicHandler = (() => {
           taskProject.value
         );
         tasks.push(newTask);
-        updateUI.updateTaskList(document.querySelector(".task-list"), newTask);
+        updateUI.updateTaskList(tasks);
         form.remove();
         addTaskButton.classList.remove("hidden");
       }
@@ -207,13 +168,14 @@ const logicHandler = (() => {
     addTaskButton.addEventListener("click", () => openTaskForm(addTaskButton));
   };
 
-  const enableAddProjectButton = (addProjectButton) => {
+  const enableAddProjectButton = () => {
+    const addProjectButton = document.querySelector(".add-project");
     addProjectButton.addEventListener("click", () =>
       openProjectForm(addProjectButton)
     );
   };
 
-  const enabelDeleteProjectButton = () => {
+  const enableDeleteProjectButton = () => {
     const projectDeleteButtons = document.querySelectorAll(
       ".project-delete-button"
     );
@@ -224,22 +186,58 @@ const logicHandler = (() => {
             project.title !==
             projectDeleteButton.closest("li").children[0].textContent
         );
-        projectDeleteButton.closest("li").remove();
+        updateUI.updateProjectList(projects);
+        updateUI.updateChoiceTitle(document.querySelector(".inbox"));
+        tasks = tasks.filter(
+          (task) =>
+            task.project !==
+            projectDeleteButton.closest("li").children[0].textContent
+        );
+        updateUI.updateTaskList(tasks);
       })
     );
   };
 
-  const enabelDeleteTaskButton = () => {
+  const enableDeleteTaskButton = () => {
     const taskDeleteButtons = document.querySelectorAll(".task-delete-button");
     taskDeleteButtons.forEach((taskDeleteButton) =>
       taskDeleteButton.addEventListener("click", () => {
-        console.log(taskDeleteButton.closest("li").children[2].textContent);
         tasks = tasks.filter(
           (task) =>
             task.title !==
             taskDeleteButton.closest("li").children[2].textContent
         );
-        taskDeleteButton.closest("li").remove();
+        updateUI.updateTaskList(tasks);
+      })
+    );
+  };
+
+  const enableCompleteTaskButton = () => {
+    const taskCompleteButtons = document.querySelectorAll(
+      ".task-complete-button"
+    );
+    taskCompleteButtons.forEach((taskCompleteButton) =>
+      taskCompleteButton.addEventListener("click", () => {
+        if (
+          tasks.filter(
+            (task) =>
+              task.title ===
+              taskCompleteButton.closest("li").children[2].textContent
+          )[0].done === true
+        ) {
+          tasks.filter(
+            (task) =>
+              task.title ===
+              taskCompleteButton.closest("li").children[2].textContent
+          )[0].done = false;
+        } else {
+          tasks.filter(
+            (task) =>
+              task.title ===
+              taskCompleteButton.closest("li").children[2].textContent
+          )[0].done = true;
+        }
+        updateUI.updateTaskList(tasks);
       })
     );
   };
@@ -247,11 +245,12 @@ const logicHandler = (() => {
   return {
     enableFolderSwitching,
     enableProjectSwitching,
-    updateProjectList,
     enableAddProjectButton,
-    enabelDeleteProjectButton,
-    enabelDeleteTaskButton,
+    enableDeleteProjectButton,
+    enableDeleteTaskButton,
+    enableAddTaskButton,
+    enableCompleteTaskButton,
   };
 })();
 
-export { logicHandler };
+export { UX };

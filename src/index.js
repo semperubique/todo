@@ -1,7 +1,10 @@
 import { initializeUI } from "./initializeUI";
-import { logicHandler } from "./UX";
+import { UX } from "./UX";
+import { demo } from "./objects";
 
 initializeUI.initializeBody();
-logicHandler.enableFolderSwitching();
-logicHandler.updateProjectList();
-logicHandler.enableProjectSwitching();
+demo();
+UX.enableAddProjectButton();
+UX.enableAddTaskButton();
+UX.enableFolderSwitching();
+UX.enableProjectSwitching();

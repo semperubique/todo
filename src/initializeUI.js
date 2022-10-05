@@ -1,4 +1,4 @@
-import { logicHandler } from "./UX";
+import { UX } from "./UX";
 
 const initializeUI = (() => {
   const initializeHeader = () => {
@@ -40,6 +40,22 @@ const initializeUI = (() => {
   const initializeContent = () => {
     const content = document.createElement("div");
     content.classList.add("content");
+    const container = document.createElement("div");
+    container.classList.add("content-container");
+    const choiceTitle = document.createElement("h2");
+    const taskList = document.createElement("ul");
+    taskList.classList.add("task-list");
+    const addTaskButton = document.createElement("button");
+    addTaskButton.classList.add("add-task-button");
+    addTaskButton.textContent = "Add a task";
+
+    choiceTitle.classList.add("choice-title");
+    choiceTitle.textContent = "Inbox";
+    container.appendChild(choiceTitle);
+    container.appendChild(addTaskButton);
+    container.appendChild(taskList);
+    content.appendChild(container);
+
     return content;
   };
 
@@ -80,8 +96,6 @@ const initializeUI = (() => {
     projects.appendChild(projectList);
     projects.appendChild(projectAddButton);
 
-    logicHandler.enableAddProjectButton(projectAddButton); // fix: it should not be here
-
     return projects;
   };
 
@@ -95,4 +109,4 @@ const initializeUI = (() => {
   return { initializeBody };
 })();
 
-export { displayInitializer };
+export { initializeUI };
